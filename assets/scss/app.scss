@@ -1,0 +1,23 @@
+@import "~bootstrap/scss/bootstrap";
+
+#content {
+  @extend .container !optional;
+}
+
+#header {
+  @extend .jumbotron !optional;
+}
+
+.nav-links {
+  @extend .pagination !optional;
+}
+
+.nav-next,
+.nav-previous {
+  @extend .page-item !optional;
+}
+
+.nav-next,
+.nav-previous a{
+  @extend .page-link !optional;
+}
