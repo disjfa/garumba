@@ -8,6 +8,7 @@ Encore
   .setOutputPath('build/')
   .setPublicPath('/wp-content/themes/garumba/build/')
   .addEntry('app', './assets/app.js')
+  .addStyleEntry('main', './assets/scss/app.scss')
   .splitEntryChunks()
   .enableSingleRuntimeChunk()
   .cleanupOutputBeforeBuild()
@@ -17,6 +18,7 @@ Encore
     config.useBuiltIns = 'usage';
     config.corejs = 3;
   })
+  .enableVueLoader(() => {}, { runtimeCompilerBuild: true })
   .enableSassLoader()
 ;
 

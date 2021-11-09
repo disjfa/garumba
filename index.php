@@ -4,6 +4,10 @@ get_header();
 
 get_template_part('template-parts/search/search-results');
 
+?>
+    <v-products></v-products>
+<?php
+
 if (have_posts()) {
 
     // Load posts loop.

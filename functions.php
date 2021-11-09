@@ -16,26 +16,24 @@ if (false === function_exists('garumba_enqueue_scripts')) {
         if (!isset($result['entrypoints'])) {
             return;
         }
-        if (!isset($result['entrypoints']['app'])) {
-            return;
-        }
-        if (!isset($result['entrypoints']['app']['css'])) {
-            return;
-        }
 
-        foreach (['js', 'css'] as $type) {
-            foreach ($result['entrypoints']['app'][$type] as $fileName) {
-                $handle = pathinfo($fileName, PATHINFO_FILENAME);
-                $handle = 'garumba-' . $handle;
+        foreach (['app', 'main'] as $entry) {
+            foreach (['js', 'css'] as $type) {
+                if (isset($result['entrypoints'][$entry]) && isset($result['entrypoints'][$entry][$type])) {
+                    foreach ($result['entrypoints'][$entry][$type] as $fileName) {
+                        $handle = pathinfo($fileName, PATHINFO_FILENAME);
+                        $handle = 'garumba-' . $handle;
 
-                if ($type === 'css') {
-                    wp_register_style($handle, $fileName);
-                    wp_enqueue_style($handle);
-                }
+                        if ($type === 'css') {
+                            wp_register_style($handle, $fileName);
+                            wp_enqueue_style($handle);
+                        }
 
-                if ($type === 'js') {
-                    wp_register_script($handle, $fileName);
-                    wp_enqueue_script($handle, '', [], false, true);
+                        if ($type === 'js') {
+                            wp_register_script($handle, $fileName);
+                            wp_enqueue_script($handle, '', [], false, true);
+                        }
+                    }
                 }
             }
         }
